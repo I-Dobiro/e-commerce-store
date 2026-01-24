@@ -1,6 +1,9 @@
-import dotenv from 'dotenv';
+import dotenv, { config } from 'dotenv';
+import path from 'path';
 
-dotenv.config();
+config({ path: path.resolve(process.cwd(),"../.env") }); 
+
+
 
 export const ENV = {
     PORT: process.env.PORT,
