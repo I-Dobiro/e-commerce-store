@@ -3,8 +3,8 @@ import { Pool } from "pg";
 import * as schema from "./schema";
 import { ENV } from "../config/env";
 
-if(!ENV.DB_URL) {
-    throw new Error('Database URL is not defined in envirnment variables');
+if (!ENV.DB_URL) {
+  throw new Error('Database URL is not defined in envirnment variables');
 };
 
 // initialize PostgreSQL connection pool
