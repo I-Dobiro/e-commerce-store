@@ -1,17 +1,25 @@
-import { SignedOut, SignInButton, SignedIn, SignOutButton } from '@clerk/clerk-react'
+import { Routes, Route } from 'react-router'
+import NavBar from './components/NavBar'
+import HomePage from './pages/HomePage'
+import ProductPage from './pages/ProductPage'
+import ProfilePage from './pages/ProfilePage'
+import CreateProductPage from './pages/CreateProductPage'
+import EditProductPage from './pages/EditProductPage'
 
 function App() {
   return (
-    <>
-      <h1 className='text-red-400'>Welcome to the E-commerce Store</h1>
-      <button className="btn btn-primary">Shop Now</button>
-      <SignedOut>
-        <SignInButton mode='modal' />
-      </SignedOut>
-      <SignedIn>
-        <SignOutButton />
-      </SignedIn>
-    </>
+    <div className='min-h-screen bg-base-100'>
+      <NavBar />
+      <main className='max-width-5xl mx-auto py-8 px-4'>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/product/:id' element={<ProductPage />} />
+          <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/create' element={<CreateProductPage />} />
+          <Route path='/edit/:id' element={<EditProductPage />} />
+        </Routes>
+      </main>
+    </div>
   )
 }
 export default App
