@@ -6,7 +6,7 @@ import ProfilePage from './pages/ProfilePage'
 import CreateProductPage from './pages/CreateProductPage'
 import EditProductPage from './pages/EditProductPage'
 
-function App() {
+const App = () => {
   return (
     <div className='min-h-screen bg-base-100'>
       <NavBar />
