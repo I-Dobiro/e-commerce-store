@@ -9,9 +9,9 @@ import commentRoutes from './routes/commentRoutes';
 
 const app = express();
 
-app.use(cors({ origin: ENV.CLIENT_URL })); // Adjust the origin as needed
+app.use(cors({ origin: ENV.CLIENT_URL, credentials: true })); // allows requests from the React frontend and includes cookies for auth
 app.use(clerkMiddleware()); // auth object will be available on req.auth
-app.use(express.json()); // parses incoming requests with JSON payloads
+app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // parses data from HTML forms
 
 app.get("/", (req, res) => {
