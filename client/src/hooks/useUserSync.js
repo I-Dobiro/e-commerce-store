@@ -5,22 +5,22 @@ import { syncUser } from "../lib/api";
 
 
 const useUserSync = () => {
-  const { isSignedIn } = useAuth();
-  const { user } = useUser();
+    const { isSignedIn } = useAuth();
+    const { user } = useUser();
 
-  const { mutate: syncUserMutation, isPending, isSuccess } = useMutation({ mutationFn: syncUser });
+    const { mutate: syncUserMutation, isPending, isSuccess } = useMutation({ mutationFn: syncUser });
 
-  useEffect(() => {
-    if (isSignedIn && user && !isPending && !isSuccess) {
-      syncUserMutation({
-        email: user.primaryEmailAddress?.emailAddress,
-        name: user.fullName || user.firstName,
-        imageUrl: user.imageUrl,
-      });
-    }
-  }, [isSignedIn, user, syncUserMutation, isPending, isSuccess]);
+    useEffect(() => {
+        if (isSignedIn && user && !isPending && !isSuccess) {
+            syncUserMutation({
+                email: user.primaryEmailAddress?.emailAddress,
+                name: user.fullName || user.firstName,
+                imageUrl: user.imageUrl,
+            });
+        }
+    }, [isSignedIn, user, syncUserMutation, isPending, isSuccess]);
 
-  return { isSynced: isSuccess };
+    return { isSynced: isSuccess };
 }
 
 export default useUserSync;
