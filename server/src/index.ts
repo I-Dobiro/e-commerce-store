@@ -1,5 +1,5 @@
 import express from 'express';
-import { ENV } from './config/env';
+import { ENV } from './config/env.js';
 import { clerkMiddleware } from '@clerk/express'
 import cors from 'cors';
 import userRoutes from './routes/userRoutes.js';

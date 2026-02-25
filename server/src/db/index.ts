@@ -1,7 +1,7 @@
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 import * as schema from "./schema.js";
-import { ENV } from "../config/env";
+import { ENV } from "../config/env.js";
 
 if (!ENV.DB_URL) {
   throw new Error('Database URL is not defined in envirnment variables');

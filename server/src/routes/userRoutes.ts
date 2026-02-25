@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { syncUser } from "../controllers/userController";
+import { syncUser } from "../controllers/userController.js";
 import { requireAuth } from "@clerk/express";
 
 const router = Router();
