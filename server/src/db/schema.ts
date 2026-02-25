@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, uuid, integer } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
 export const users = pgTable("users", {
@@ -17,13 +17,14 @@ export const users = pgTable("users", {
 export const products = pgTable("products", {
     id: uuid("id").defaultRandom().primaryKey(),
     title: text("title").notNull(),
+    priceInCents: integer("price_in_cents").notNull().default(0),
     description: text("description").notNull(),
     imageUrl: text("image_url").notNull(),
     userId: text("user_id")
         .notNull()
         .references(() => users.id, { onDelete: "cascade" }),
     createdAt: timestamp("created_at", { mode: "date" }).notNull().defaultNow(),
-    updatedAt: timestamp("updated_at", { mode: "date" }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { mode: "date" }).notNull().defaultNow().$onUpdate(() => new Date()),
 });
 
 export const comments = pgTable("comments", {

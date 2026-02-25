@@ -50,16 +50,25 @@ export const createProduct = async (req: Request, res: Response) => {
         const { userId } = getAuth(req);
         if (!userId) return res.status(401).json({ error: "Unauthorized" });
 
-        const { title, description, imageUrl } = req.body;
+        const { title, priceInCents, description, imageUrl } = req.body;
 
-        if (!title || !description || !imageUrl) {
-            return res
-                .status(400)
-                .json({ error: "Title, description, and imageUrl are required" });
+        const price = Number(priceInCents);
+
+        if (
+            !title ||
+            !description ||
+            !imageUrl ||
+            Number.isNaN(price) ||
+            price < 0
+        ) {
+            return res.status(400).json({
+                error: "Title, valid priceInCents, description, and imageUrl are required",
+            });
         }
 
         const product = await queries.createProduct({
             title,
+            priceInCents: price,
             description,
             imageUrl,
             userId,
@@ -79,7 +88,7 @@ export const updateProduct = async (req: Request, res: Response) => {
         if (!userId) return res.status(401).json({ error: "Unauthorized" });
 
         const id = req.params.id as string;
-        const { title, description, imageUrl } = req.body;
+        const { title, priceInCents, description, imageUrl } = req.body;
 
         const existingProduct = await queries.getProductById(id);
         if (!existingProduct) {
@@ -92,8 +101,23 @@ export const updateProduct = async (req: Request, res: Response) => {
                 .json({ error: "You can only update your own products" });
         }
 
+        const price = Number(priceInCents);
+
+        if (
+            !title ||
+            !description ||
+            !imageUrl ||
+            Number.isNaN(price) ||
+            price < 0
+        ) {
+            return res.status(400).json({
+                error: "Title, valid priceInCents, description, and imageUrl are required",
+            });
+        }
+
         const product = await queries.updateProduct(id, {
             title,
+            priceInCents: price,
             description,
             imageUrl,
         });

@@ -23,6 +23,7 @@ const ProductCard = ({ product }) => {
                     {product.title}
                     {isNew && <span className="badge badge-secondary badge-sm">NEW</span>}
                 </h2>
+                <h2>£{(product.priceInCents / 100).toFixed(2)}</h2>
                 <p className="text-sm text-base-content/70 line-clamp-2">{product.description}</p>
 
                 <div className="divider my-1"></div>
