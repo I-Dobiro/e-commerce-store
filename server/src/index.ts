@@ -30,7 +30,7 @@ app.use("/api/users", userRoutes); // user routes
 app.use("/api/products", productRoutes); // product routes
 app.use("/api/comments", commentRoutes); // comment routes
 
-if(ENV.NODE_ENV === "production") {
+if (ENV.NODE_ENV === "production") {
   const __dirname = path.resolve();
   app.use(express.static(path.join(__dirname, "../client/dist")));
   app.get("/{*any}", (req, res) => {
