@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import * as queries from "../db/queries";
+import * as queries from "../db/queries.js";
 import { getAuth } from "@clerk/express";
 
 // Get all products (public)

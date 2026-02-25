@@ -2,9 +2,9 @@ import express from 'express';
 import { ENV } from './config/env';
 import { clerkMiddleware } from '@clerk/express'
 import cors from 'cors';
-import userRoutes from './routes/userRoutes';
-import productRoutes from './routes/productRoutes';
-import commentRoutes from './routes/commentRoutes';
+import userRoutes from './routes/userRoutes.js';
+import productRoutes from './routes/productRoutes.js';
+import commentRoutes from './routes/commentRoutes.js';
 import path from 'path';
 import { Request, Response } from "express";
 

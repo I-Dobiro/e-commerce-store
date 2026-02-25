@@ -7,7 +7,7 @@ import {
   type NewUser,
   type NewComment,
   type NewProduct,
-} from "./schema";
+} from "./schema.js";
 
 // USER QUERIES
 export const createUser = async (data: NewUser) => {
