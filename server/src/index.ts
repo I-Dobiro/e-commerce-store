@@ -31,10 +31,16 @@ app.use("/api/users", userRoutes); // user routes
 app.use("/api/products", productRoutes); // product routes
 app.use("/api/comments", commentRoutes); // comment routes
 
+
 if (ENV.NODE_ENV === "production") {
   const __dirname = path.resolve();
   app.use(express.static(path.join(__dirname, "../client/dist")));
-  app.get("/{*any}", (req: Request, res: Response) => {
+
+  // Catch all routes that are NOT /api/*
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) {
+      return next(); // skip API routes
+    }
     res.sendFile(path.join(__dirname, "../client/dist/index.html"));
   });
 }
