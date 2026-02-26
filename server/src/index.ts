@@ -36,11 +36,8 @@ if (ENV.NODE_ENV === "production") {
   const __dirname = path.resolve();
   app.use(express.static(path.join(__dirname, "../client/dist")));
 
-  // Catch all routes that are NOT /api/*
-  app.get('*', (req, res, next) => {
-    if (req.path.startsWith('/api')) {
-      return next(); // skip API routes
-    }
+  // Catch-all for React, skip /api routes
+  app.get(/^(?!\/api).*/, (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, "../client/dist/index.html"));
   });
 }
