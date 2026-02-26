@@ -14,12 +14,8 @@ export const syncUser = async (userData) => {
 
 export const getAllProducts = async () => {
     try {
-        if (!import.meta.env.VITE_API_URL) {
-            throw new Error("VITE_API_URL is not defined!");
-        }
-
         const { data } = await api.get("/products");
-
+        console.log("Fetched products data:", data);
         // Ensure data is an array
         if (!Array.isArray(data)) {
             console.error("Expected array but got:", data);
