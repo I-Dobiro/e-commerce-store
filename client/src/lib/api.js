@@ -7,9 +7,30 @@ export const syncUser = async (userData) => {
 };
 
 // Products API
+// export const getAllProducts = async () => {
+//     const { data } = await api.get("/products");
+//     return data;
+// };
+
 export const getAllProducts = async () => {
-    const { data } = await api.get("/products");
-    return data;
+    try {
+        if (!import.meta.env.VITE_API_URL) {
+            throw new Error("VITE_API_URL is not defined!");
+        }
+
+        const { data } = await api.get("/products");
+
+        // Ensure data is an array
+        if (!Array.isArray(data)) {
+            console.error("Expected array but got:", data);
+            return [];
+        }
+
+        return data;
+    } catch (error) {
+        console.error("Failed to fetch products:", error);
+        return [];
+    }
 };
 
 export const getProductById = async (id) => {
