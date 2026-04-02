@@ -2,7 +2,7 @@ import type { Request, Response } from "express";
 import * as queries from "../db/queries.js";
 import { getAuth } from "@clerk/express";
 
-// Create comment (protected)
+// Create comment 
 export const createComment = async (req: Request, res: Response) => {
     try {
         const { userId } = getAuth(req);
@@ -15,7 +15,7 @@ export const createComment = async (req: Request, res: Response) => {
             return res.status(400).json({ error: "Comment content is required" });
         }
 
-        // verify product exists
+
         const product = await queries.getProductById(productId);
         if (!product) {
             return res.status(404).json({ error: "Product not found" });
@@ -34,7 +34,7 @@ export const createComment = async (req: Request, res: Response) => {
     }
 };
 
-// Delete comment (protected - owner only)
+// Delete comment 
 export const deleteComment = async (req: Request, res: Response) => {
     try {
         const { userId } = getAuth(req);
@@ -42,7 +42,6 @@ export const deleteComment = async (req: Request, res: Response) => {
 
         const commentId = req.params.commentId as string;
 
-        // check if comment exists and belongs to user
         const existingComment = await queries.getCommentById(commentId);
         if (!existingComment) {
             return res.status(404).json({ error: "Comment not found" });

@@ -10,14 +10,12 @@ const Navbar = () => {
     return (
         <div className="navbar bg-base-300">
             <div className="max-w-5xl mx-auto w-full px-4 flex justify-between items-center">
-                {/* LOGO - LEFT SIDE */}
                 <div className="flex-1">
                     <Link to="/" className="btn btn-ghost gap-2">
                         <ShoppingBagIcon className="size-5 text-primary" />
                         <span className="text-lg font-bold font-mono uppercase tracking-wider">E-Commerce-Store</span>
                     </Link>
                 </div>
-                {/* ACTIONS - RIGHT SIDE */}
                 <div className="flex gap-2 items-center">
                     <ThemeSelector />
                     {isSignedIn ? (
